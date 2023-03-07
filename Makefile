@@ -1,13 +1,14 @@
-NAME		= 	minitalk
+CLIENT		= 	client
+SERVER		=	server
 CFLAGS		= 	-Wall -Werror -Wextra
 CC			= 	cc
 RM			=	rm -rf
 INCLUDE 	= 	-I include
 
-MAN_FILES	=	client.c \
-				server.c \
+# MAN_FILES	=	client.c \
+# 				server.c \
 
-MAN_OBJ		=	$(MAN_FILES:.c=.o)
+# MAN_OBJ		=	$(MAN_FILES:.c=.o)
 
 LIBS		=	libs/libs.a
 
@@ -18,11 +19,15 @@ WHITE		=	\033[0m
 
 # RULES
 
-all: $(NAME)
+all: $(CLIENT) $(SERVER)
 
-$(NAME): $(LIBS) $(MAN_OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(MAN_OBJ) $(LIBS) $(INCLUDE)
-	@echo "$(GREEN)*** minitalk compiled!***$(WHITE)"
+$(CLIENT): $(LIBS) src/client.o
+	$(CC) $(CFLAGS) -o $(CLIENT) src/client.o $(LIBS) $(INCLUDE)
+	@echo "$(GREEN)*** Client compiled!***$(WHITE)"
+
+$(SERVER): $(LIBS) src/server.o
+	$(CC) $(CFLAGS) -o $(SERVER) src/server.o $(LIBS) $(INCLUDE)
+	@echo "$(GREEN)*** Server compiled!***$(WHITE)"	
 
 %.o: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -32,12 +37,12 @@ $(LIBS):
 	@make --silent -C libs
 
 clean:
-	$(RM) $(MAN_OBJ)
+	$(RM) src/client.o src/server.o
 	make clean --silent -C libs
 	@echo "$(BLUE)*** Object files minitalk cleaned! ***$(WHITE)"
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(CLIENT) $(SERVER)
 	make fclean --silent -C libs
 	@echo "$(BLUE)*** Executable (.a) file minitalk cleaned! ***$(WHITE)"
 
