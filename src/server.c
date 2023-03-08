@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:37:08 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/08 16:56:41 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/08 17:28:59 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(void)
 	{
 		signal(SIGUSR1, ft_btoa);
 		signal(SIGUSR2, ft_btoa);
-		sleep(1);
 	}
 	return(0);
 }
