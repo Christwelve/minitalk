@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:37:08 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/08 16:29:35 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/08 16:56:41 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void ft_btoa(int sig)
 		bit = 0;
 		c = 0;
 	}	
-	
 }
 
 int	main(void)

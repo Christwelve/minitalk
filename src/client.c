@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:37:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/08 16:39:59 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/08 16:57:46 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 	if (invalid_pid(argv[1]))
 		return (ft_printf("%s\n", "Invalid PID"));
 	pid = ft_atoi(argv[1]);
-	printf("%i", pid);
 	if (!process_exists(pid))
 		return (ft_printf("%s\n", "Process doesn't exists"));
 	i = 0;
