@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:54:36 by christianme       #+#    #+#             */
-/*   Updated: 2023/03/09 10:17:26 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/09 12:30:25 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
-#include "../libs/libs.h"
-#include <signal.h>
+# include "../libs/libs.h"
+# include <signal.h>
 
 #endif

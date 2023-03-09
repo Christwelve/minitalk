@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:37:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/09 10:41:49 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/09 12:27:38 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		process_exists(int pid);
 
 int	main(int argc, char **argv)
 {
-	int pid;
-	int i;
-	
+	int	pid;
+	int	i;
+
 	if (!(argc == 3))
 		return (ft_printf("%s\n", "Wrong input! Use: ./client <pid> <str> "));
 	if (invalid_pid(argv[1]))
@@ -33,25 +33,25 @@ int	main(int argc, char **argv)
 	{
 		ft_atob(pid, argv[2][i]);
 		i++;
-	}	
-	return(0);
+	}
+	return (0);
 }
 
 void	ft_atob(int pid, char c)
 {
-	int bit;
-	char signal;
+	int		bit;
+	char	signal;
 
 	bit = 0;
 	while (bit < 7)
 	{
 		signal = c & (0b1000000 >> bit);
-		if(signal)
+		if (signal)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
 		bit++;
-		usleep(100);		
+		usleep(100);
 	}
 }
 
@@ -62,9 +62,9 @@ int	invalid_pid(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if(!(str[i] >= '0' && str[i] <= '9'))
+		if (!(str[i] >= '0' && str[i] <= '9'))
 			return (1);
-		i++;	
+		i++;
 	}
 	return (0);
 }
