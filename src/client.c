@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:37:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/09 12:27:38 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/09 20:34:29 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int		process_exists(int pid);
 
 int	main(int argc, char **argv)
 {
-	int	pid;
-	int	i;
+	int				pid;
+	unsigned int	i;
+	size_t			len;
 
 	if (!(argc == 3))
 		return (ft_printf("%s\n", "Wrong input! Use: ./client <pid> <str> "));
@@ -29,7 +30,8 @@ int	main(int argc, char **argv)
 	if (!process_exists(pid))
 		return (ft_printf("%s\n", "Process doesn't exists"));
 	i = 0;
-	while (argv[2][i])
+	len = ft_strlen(argv[2]);
+	while (i <= len)
 	{
 		ft_atob(pid, argv[2][i]);
 		i++;
