@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:37:08 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/09 12:29:56 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/03/09 12:42:41 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ int	main(void)
 
 void	ft_btoa(int signal)
 {
-	static int	bit;
-	static char	c;
+	static int	bit = 0;
+	static char	c = 0;
 
-	bit = 0;
-	c = 0;
 	c = c << 1;
 	if (signal == SIGUSR2)
 		c = c | 1;
