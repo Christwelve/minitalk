@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:37:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/09 20:34:29 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/09 23:18:04 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_atob(int pid, char c)
 		else
 			kill(pid, SIGUSR1);
 		bit++;
-		usleep(100);
+		usleep(50);
 	}
 }
 
