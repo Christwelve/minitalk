@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:37:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/08 16:57:46 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/09 10:41:49 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_atob(int pid, char c);
 int		invalid_pid(char *str);
 int		process_exists(int pid);
-
 
 int	main(int argc, char **argv)
 {
@@ -26,7 +25,7 @@ int	main(int argc, char **argv)
 		return (ft_printf("%s\n", "Wrong input! Use: ./client <pid> <str> "));
 	if (invalid_pid(argv[1]))
 		return (ft_printf("%s\n", "Invalid PID"));
-	pid = ft_atoi(argv[1]);
+	pid = atoi(argv[1]);
 	if (!process_exists(pid))
 		return (ft_printf("%s\n", "Process doesn't exists"));
 	i = 0;
@@ -38,22 +37,19 @@ int	main(int argc, char **argv)
 	return(0);
 }
 
-// SIGUSR1 = 0 
-// SIGUSR2 = 1
 void	ft_atob(int pid, char c)
 {
 	int bit;
 	char signal;
 
 	bit = 0;
-	while (bit < 8)
+	while (bit < 7)
 	{
-		signal = c & 1;
+		signal = c & (0b1000000 >> bit);
 		if(signal)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		c = c >> 1;
 		bit++;
 		usleep(100);		
 	}
