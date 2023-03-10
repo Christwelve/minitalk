@@ -3,18 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:37:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/03/09 23:18:04 by christianme      ###   ########.fr       */
+/*   Updated: 2023/03/10 22:57:05 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-void	ft_atob(int pid, char c);
-int		invalid_pid(char *str);
-int		process_exists(int pid);
+static int	process_exists(int pid)
+{
+	if (kill(pid, 0) == 0)
+		return (1);
+	return (0);
+}
+
+static int	invalid_pid(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static void	ft_atob(int pid, char c)
+{
+	int		bit;
+	char	signal;
+
+	bit = 0;
+	while (bit < 7)
+	{
+		signal = c & (0b1000000 >> bit);
+		if (signal)
+			kill(pid, SIGUSR2);
+		else
+			kill(pid, SIGUSR1);
+		bit++;
+		usleep(100);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -36,44 +71,5 @@ int	main(int argc, char **argv)
 		ft_atob(pid, argv[2][i]);
 		i++;
 	}
-	return (0);
-}
-
-void	ft_atob(int pid, char c)
-{
-	int		bit;
-	char	signal;
-
-	bit = 0;
-	while (bit < 7)
-	{
-		signal = c & (0b1000000 >> bit);
-		if (signal)
-			kill(pid, SIGUSR2);
-		else
-			kill(pid, SIGUSR1);
-		bit++;
-		usleep(50);
-	}
-}
-
-int	invalid_pid(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	process_exists(int pid)
-{
-	if (kill(pid, 0) == 0)
-		return (1);
 	return (0);
 }
